@@ -28,8 +28,10 @@
     "openlogin"
   ],
   "dependencies": {
+    "expo-constants": "^13.0.0",
     "expo-linking": "^3.0.0",
-    "expo-web-browser": "^10.1.0"
+    "expo-web-browser": "^10.1.0",
+    "js-base64": "^3.7.2"
   },
   "peerDependencies": {
     "react": "*",
