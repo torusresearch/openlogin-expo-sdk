@@ -7,6 +7,7 @@ import Constants from "expo-constants";
 import { constants } from "buffer";
 import { url } from "inspector";
 import { State } from "./State";
+import { URL } from "react-native-url-polyfill";
 
 interface InitParams {
   clientId: string;
@@ -61,7 +62,7 @@ class OpenLogin {
     const hash = Base64.encodeURI(JSON.stringify(mergedParams));
 
     const url = new URL(this.initParams.sdkUrl.href);
-    url.pathname += `/${path}`;
+    url.pathname = url.pathname + `/${path}`;
     url.hash = hash;
 
     console.log(
