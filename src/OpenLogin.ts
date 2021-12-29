@@ -56,13 +56,18 @@ class OpenLogin {
 
     const mergedParams = {
       init: initParams,
-      params: params,
+      params: {
+        ...params,
+        ...(!params.redirectUrl && { redirectUrl: redirectUrl.href }),
+      },
     };
+
+    console.log(`[OpenLogin] params passed to OpenLogin: ${mergedParams}`);
 
     const hash = Base64.encodeURI(JSON.stringify(mergedParams));
 
     const url = new URL(this.initParams.sdkUrl.href);
-    url.pathname = url.pathname + `/${path}`;
+    url.pathname = url.pathname + `${path}`;
     url.hash = hash;
 
     console.log(
