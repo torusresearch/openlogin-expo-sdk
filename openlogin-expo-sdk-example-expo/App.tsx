@@ -2,8 +2,17 @@ import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import OpenLogin, { LoginProvider, Network } from "openlogin-expo-sdk";
-import Constants from "expo-constants";
-import * as Linking from 'expo-linking';
+import Constants, { AppOwnership } from "expo-constants";
+import * as Linking from "expo-linking";
+import { URL } from "react-native-url-polyfill";
+
+const scheme = "openloginexposdkexampleexpo";
+
+const resolvedRedirectUrl =
+  Constants.appOwnership == AppOwnership.Expo ||
+  Constants.appOwnership == AppOwnership.Guest
+    ? new URL(Linking.createURL("openlogin", {}))
+    : new URL(Linking.createURL("openlogin", { scheme: scheme }));
 
 export default function App() {
   const [key, setKey] = useState("");
@@ -17,6 +26,7 @@ export default function App() {
       });
       const state = await openlogin.login({
         loginProvider: LoginProvider.GOOGLE,
+        redirectUrl: resolvedRedirectUrl,
       });
       setKey(state.privKey || "no key");
     } catch (e) {
@@ -28,7 +38,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Key: {key}</Text>
       <Text>Error: {errorMsg}</Text>
-      <Text>Linking URL: {Linking.createURL("openlogin", {})}</Text>
+      <Text>Linking URL: {resolvedRedirectUrl}</Text>
       <Button title="Login with OpenLogin" onPress={login} />
       <StatusBar style="auto" />
     </View>

@@ -1,11 +1,7 @@
 import * as WebBrowser from "expo-web-browser";
 import { Network } from "./Network";
 import { LoginProvider } from "./LoginProvider";
-import { TextEncoder } from "util";
 import { Base64 } from "js-base64";
-import Constants from "expo-constants";
-import { constants } from "buffer";
-import { url } from "inspector";
 import { State } from "./State";
 import { URL } from "react-native-url-polyfill";
 import * as Linking from 'expo-linking';
