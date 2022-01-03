@@ -8,6 +8,7 @@ import { constants } from "buffer";
 import { url } from "inspector";
 import { State } from "./State";
 import { URL } from "react-native-url-polyfill";
+import * as Linking from 'expo-linking';
 
 interface InitParams {
   clientId: string;
@@ -44,7 +45,7 @@ class OpenLogin {
   private async request(
     path: string,
     params: Record<string, any> = {},
-    redirectUrl: URL = new URL(Constants.linkingUri)
+    redirectUrl: URL = new URL(Linking.createURL("openlogin", {}))
   ) {
     const initParams = {
       clientId: this.initParams.clientId,

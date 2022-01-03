@@ -3,6 +3,7 @@ import { useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
 import OpenLogin, { LoginProvider, Network } from "openlogin-expo-sdk";
 import Constants from "expo-constants";
+import * as Linking from 'expo-linking';
 
 export default function App() {
   const [key, setKey] = useState("");
@@ -27,7 +28,7 @@ export default function App() {
     <View style={styles.container}>
       <Text>Key: {key}</Text>
       <Text>Error: {errorMsg}</Text>
-      <Text>Linking URL: {Constants.linkingUri}</Text>
+      <Text>Linking URL: {Linking.createURL("openlogin", {})}</Text>
       <Button title="Login with OpenLogin" onPress={login} />
       <StatusBar style="auto" />
     </View>
