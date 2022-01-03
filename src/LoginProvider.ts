@@ -14,6 +14,7 @@ enum LoginProvider {
   WECHAT = "wechat",
   EMAIL_PASSWORDLESS = "email_passwordless",
   WEBAUTHN = "webauthn",
+  ANY = "",
 }
 
 export { LoginProvider };
