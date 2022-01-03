@@ -39,6 +39,8 @@ export default function App() {
       <Text>Key: {key}</Text>
       <Text>Error: {errorMsg}</Text>
       <Text>Linking URL: {resolvedRedirectUrl}</Text>
+      <Text>appOwnership: {Constants.appOwnership}</Text>
+      <Text>executionEnvironment: {Constants.executionEnvironment}</Text>
       <Button title="Login with OpenLogin" onPress={login} />
       <StatusBar style="auto" />
     </View>
