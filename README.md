@@ -6,7 +6,7 @@
 npm install openlogin-expo-sdk
 ```
 
-To allow the SDK to work with exported Expo Android apps, you need to place a designed scheme into `app.json`, like below:
+To allow the SDK to work with exported Expo Android apps, you need to place a designated scheme into `app.json`, like below:
 
 ```js
     "scheme": "openloginexposdkexampleexpo",
