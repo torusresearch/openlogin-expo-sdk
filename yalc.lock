@@ -1,0 +1,9 @@
+{
+  "version": "v1",
+  "packages": {
+    "react-native-web-browser": {
+      "signature": "02d61ed308e0643b64d38d8c8e11b1e9",
+      "file": true
+    }
+  }
+}
