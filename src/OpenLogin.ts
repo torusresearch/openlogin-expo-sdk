@@ -1,4 +1,4 @@
-import * as WebBrowser from "expo-web-browser";
+import * as WebBrowser from "react-native-web-browser";
 import { Network } from "./Network";
 import { LoginProvider } from "./LoginProvider";
 import { Base64 } from "js-base64";
