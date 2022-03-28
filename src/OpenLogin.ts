@@ -44,6 +44,7 @@ class OpenLogin {
     redirectUrl: URL = new URL(Linking.createURL("openlogin", {}))
   ) {
     const initParams = {
+      ...this.initParams,
       clientId: this.initParams.clientId,
       network: this.initParams.network,
       ...(!!this.initParams.redirectUrl && {
