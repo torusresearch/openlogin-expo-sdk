@@ -4,7 +4,7 @@ import { LoginProvider } from "./LoginProvider";
 import { Base64 } from "js-base64";
 import { State } from "./State";
 import { URL } from "react-native-url-polyfill";
-import * as Linking from 'expo-linking';
+import * as Linking from "expo-linking";
 
 interface InitParams {
   clientId: string;
@@ -44,6 +44,7 @@ class OpenLogin {
     redirectUrl: URL = new URL(Linking.createURL("openlogin", {}))
   ) {
     const initParams = {
+      ...this.initParams,
       clientId: this.initParams.clientId,
       network: this.initParams.network,
       ...(!!this.initParams.redirectUrl && {
