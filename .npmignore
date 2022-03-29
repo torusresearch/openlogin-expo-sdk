@@ -586,3 +586,5 @@ fabric.properties
 /node_modules
 
 /
+
+/.yalc/

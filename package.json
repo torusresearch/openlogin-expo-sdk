@@ -1,6 +1,6 @@
 {
   "name": "openlogin-expo-sdk",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "OpenLogin SDK for usage with Expo SDK for React Native",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
