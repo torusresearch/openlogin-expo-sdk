@@ -5,6 +5,7 @@ import OpenLogin, { LoginProvider, Network } from "openlogin-expo-sdk";
 import Constants, { AppOwnership } from "expo-constants";
 import * as Linking from "expo-linking";
 import { URL } from "react-native-url-polyfill";
+import * as WebBrowser from "expo-web-browser";
 
 const scheme = "openloginexposdkexampleexpo";
 
@@ -19,7 +20,7 @@ export default function App() {
   const [errorMsg, setErrorMsg] = useState("");
   const login = async () => {
     try {
-      const openlogin = new OpenLogin({
+      const openlogin = new OpenLogin(WebBrowser, {
         clientId:
           "BC5bANkU4-fil7C5s1uKzRfF0VGqbuaxDQiLnQ8WgF7SEA32lGegAhu7dk4dZf3Rk397blIvfWytXwsRvs9dOaQ",
         network: Network.TESTNET,
