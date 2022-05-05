@@ -1,10 +1,9 @@
-import * as WebBrowser from "expo-web-browser";
 import { Network } from "./Network";
 import { LoginProvider } from "./LoginProvider";
 import { Base64 } from "js-base64";
 import { State } from "./State";
 import { URL } from "react-native-url-polyfill";
-import * as Linking from "expo-linking";
+import { IWebBrowser } from "./IWebBrowser";
 
 interface InitParams {
   clientId: string;
@@ -31,17 +30,19 @@ interface LogoutOptions {
 
 class OpenLogin {
   initParams: InitParams;
-  constructor(initParams: InitParams) {
+  webBrowser: IWebBrowser;
+  constructor(webBrowser: IWebBrowser, initParams: InitParams) {
     this.initParams = initParams;
     if (!initParams.sdkUrl) {
       this.initParams.sdkUrl = new URL("https://sdk.openlogin.com");
     }
+    this.webBrowser = webBrowser;
   }
 
   private async request(
     path: string,
     params: Record<string, any> = {},
-    redirectUrl: URL = new URL(Linking.createURL("openlogin", {}))
+    redirectUrl: URL
   ) {
     const initParams = {
       ...this.initParams,
@@ -72,7 +73,10 @@ class OpenLogin {
       `[OpenLogin] opening login screen in browser at ${url.href}, will redirect to ${redirectUrl.href}`
     );
 
-    return await WebBrowser.openAuthSessionAsync(url.href, redirectUrl.href);
+    return await this.webBrowser.openAuthSessionAsync(
+      url.href,
+      redirectUrl.href
+    );
   }
 
   async login(options: LoginOptions): Promise<State> {
