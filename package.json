@@ -1,7 +1,7 @@
 {
-  "name": "openlogin-expo-sdk",
-  "version": "0.0.3",
-  "description": "OpenLogin SDK for usage with Expo SDK for React Native",
+  "name": "web3auth-react-native-sdk",
+  "version": "3.0.0",
+  "description": "Web3Auth SDK that supports Bare (Standalone) and Expo React Native apps.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "source": "src/index",
