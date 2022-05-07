@@ -1,12 +1,10 @@
-import { Network } from "./types/Network";
-import { LoginProvider } from "./types/LoginProvider";
 import { Base64 } from "js-base64";
 import { State } from "./types/State";
 import { URL } from "react-native-url-polyfill";
 import { IWebBrowser } from "./types/IWebBrowser";
 import { SdkInitParams, SdkLoginParams, SdkLogoutParams } from "./types/sdk";
 
-class OpenLogin {
+class Web3Auth {
   initParams: SdkInitParams;
   webBrowser: IWebBrowser;
   constructor(webBrowser: IWebBrowser, initParams: SdkInitParams) {
@@ -39,7 +37,7 @@ class OpenLogin {
       },
     };
 
-    console.log(`[OpenLogin] params passed to OpenLogin: ${mergedParams}`);
+    console.log(`[Web3Auth] params passed to Web3Auth: ${mergedParams}`);
 
     const hash = Base64.encodeURI(JSON.stringify(mergedParams));
 
@@ -48,7 +46,7 @@ class OpenLogin {
     url.hash = hash;
 
     console.log(
-      `[OpenLogin] opening login screen in browser at ${url.href}, will redirect to ${redirectUrl}`
+      `[Web3Auth] opening login screen in browser at ${url.href}, will redirect to ${redirectUrl}`
     );
 
     return await this.webBrowser.openAuthSessionAsync(url.href, redirectUrl);
@@ -58,7 +56,7 @@ class OpenLogin {
     const result = await this.request("login", options, options.redirectUrl);
     if (result.type != "success" || !result.url) {
       console.log(
-        `[OpenLogin] login flow failed with error type ${result.type}`
+        `[Web3Auth] login flow failed with error type ${result.type}`
       );
       throw new Error(`login flow failed with error type ${result.type}`);
     }
@@ -73,11 +71,11 @@ class OpenLogin {
     const result = await this.request("logout", options, options.redirectUrl);
     if (result.type != "success" || !result.url) {
       console.log(
-        `[OpenLogin] logout flow failed with error type ${result.type}`
+        `[Web3Auth] logout flow failed with error type ${result.type}`
       );
       throw new Error(`logout flow failed with error type ${result.type}`);
     }
   }
 }
 
-export default OpenLogin;
+export default Web3Auth;
