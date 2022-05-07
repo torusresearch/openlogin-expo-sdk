@@ -1,37 +1,15 @@
-import { Network } from "./Network";
-import { LoginProvider } from "./LoginProvider";
+import { Network } from "./types/Network";
+import { LoginProvider } from "./types/LoginProvider";
 import { Base64 } from "js-base64";
-import { State } from "./State";
+import { State } from "./types/State";
 import { URL } from "react-native-url-polyfill";
-import { IWebBrowser } from "./IWebBrowser";
-
-interface InitParams {
-  clientId: string;
-  network: Network;
-  redirectUrl?: URL;
-  sdkUrl?: URL;
-}
-
-interface LoginOptions {
-  loginProvider: LoginProvider;
-  fastLogin?: boolean;
-  relogin?: boolean;
-  skipTKey?: boolean;
-  extraLoginOptions?: Record<string, any>;
-  redirectUrl?: URL;
-  appState?: string;
-}
-
-interface LogoutOptions {
-  fastLogin?: boolean;
-  redirectUrl?: URL;
-  appState?: string;
-}
+import { IWebBrowser } from "./types/IWebBrowser";
+import { SdkInitParams, SdkLoginParams, SdkLogoutParams } from "./types/sdk";
 
 class OpenLogin {
-  initParams: InitParams;
+  initParams: SdkInitParams;
   webBrowser: IWebBrowser;
-  constructor(webBrowser: IWebBrowser, initParams: InitParams) {
+  constructor(webBrowser: IWebBrowser, initParams: SdkInitParams) {
     this.initParams = initParams;
     if (!initParams.sdkUrl) {
       this.initParams.sdkUrl = new URL("https://sdk.openlogin.com");
@@ -42,14 +20,14 @@ class OpenLogin {
   private async request(
     path: string,
     params: Record<string, any> = {},
-    redirectUrl: URL
+    redirectUrl: string
   ) {
     const initParams = {
       ...this.initParams,
       clientId: this.initParams.clientId,
       network: this.initParams.network,
       ...(!!this.initParams.redirectUrl && {
-        redirectUrl: this.initParams.redirectUrl.href,
+        redirectUrl: this.initParams.redirectUrl,
       }),
     };
 
@@ -57,7 +35,7 @@ class OpenLogin {
       init: initParams,
       params: {
         ...params,
-        ...(!params.redirectUrl && { redirectUrl: redirectUrl.href }),
+        ...(!params.redirectUrl && { redirectUrl: redirectUrl }),
       },
     };
 
@@ -70,16 +48,13 @@ class OpenLogin {
     url.hash = hash;
 
     console.log(
-      `[OpenLogin] opening login screen in browser at ${url.href}, will redirect to ${redirectUrl.href}`
+      `[OpenLogin] opening login screen in browser at ${url.href}, will redirect to ${redirectUrl}`
     );
 
-    return await this.webBrowser.openAuthSessionAsync(
-      url.href,
-      redirectUrl.href
-    );
+    return await this.webBrowser.openAuthSessionAsync(url.href, redirectUrl);
   }
 
-  async login(options: LoginOptions): Promise<State> {
+  async login(options: SdkLoginParams): Promise<State> {
     const result = await this.request("login", options, options.redirectUrl);
     if (result.type != "success" || !result.url) {
       console.log(
@@ -94,7 +69,7 @@ class OpenLogin {
     return state;
   }
 
-  async logout(options: LogoutOptions): Promise<void> {
+  async logout(options: SdkLogoutParams): Promise<void> {
     const result = await this.request("logout", options, options.redirectUrl);
     if (result.type != "success" || !result.url) {
       console.log(
