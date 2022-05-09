@@ -1,7 +1,7 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, Text, View, Button } from "react-native";
-import OpenLogin, {
+import Web3Auth, {
   LOGIN_PROVIDER,
   OPENLOGIN_NETWORK,
   SdkInitParams,
@@ -23,12 +23,12 @@ export default function App() {
   const [errorMsg, setErrorMsg] = useState("");
   const login = async () => {
     try {
-      const openlogin = new OpenLogin(WebBrowser, {
+      const web3auth = new Web3Auth(WebBrowser, {
         clientId:
           "BC5bANkU4-fil7C5s1uKzRfF0VGqbuaxDQiLnQ8WgF7SEA32lGegAhu7dk4dZf3Rk397blIvfWytXwsRvs9dOaQ",
         network: OPENLOGIN_NETWORK.TESTNET,
       });
-      const state = await openlogin.login({
+      const state = await web3auth.login({
         loginProvider: LOGIN_PROVIDER.GOOGLE,
         redirectUrl: resolvedRedirectUrl,
       });
