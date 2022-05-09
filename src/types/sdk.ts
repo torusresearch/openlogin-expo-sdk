@@ -4,10 +4,9 @@ import {
   LoginParams,
   OpenLoginOptions,
 } from "./core";
-import { URL } from "react-native-url-polyfill";
 
 type SdkSpecificInitParams = {
-  sdkUrl: URL;
+  sdkUrl?: string;
 };
 
 export type SdkInitParams = Omit<

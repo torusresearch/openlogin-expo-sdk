@@ -9,8 +9,8 @@ class Web3Auth {
   webBrowser: IWebBrowser;
   constructor(webBrowser: IWebBrowser, initParams: SdkInitParams) {
     this.initParams = initParams;
-    if (!initParams.sdkUrl) {
-      this.initParams.sdkUrl = new URL("https://sdk.openlogin.com");
+    if (!this.initParams.sdkUrl) {
+      this.initParams.sdkUrl = "https://sdk.openlogin.com";
     }
     this.webBrowser = webBrowser;
   }
@@ -41,7 +41,7 @@ class Web3Auth {
 
     const hash = Base64.encodeURI(JSON.stringify(mergedParams));
 
-    const url = new URL(this.initParams.sdkUrl.href);
+    const url = new URL(this.initParams.sdkUrl);
     url.pathname = url.pathname + `${path}`;
     url.hash = hash;
 
