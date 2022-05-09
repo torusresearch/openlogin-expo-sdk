@@ -30,6 +30,10 @@ export interface BaseLoginOptions {
    */
   ui_locales?: string;
   /**
+   * JWT ID Token for use with the JWT login method.
+   */
+  id_token?: string;
+  /**
    * Previously issued ID Token.
    */
   id_token_hint?: string;
