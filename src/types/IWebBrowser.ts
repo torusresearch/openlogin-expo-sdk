@@ -165,7 +165,7 @@ export interface IWebBrowser {
    * @return The promise which fulfils with [`WebBrowserCustomTabsResults`](#webbrowsercustomtabsresults) object.
    * @platform android
    */
-  getCustomTabsSupportingBrowsersAsync(): Promise<WebBrowserCustomTabsResults>;
+  // getCustomTabsSupportingBrowsersAsync(): Promise<WebBrowserCustomTabsResults>;
   /**
    * This method calls `warmUp` method on [CustomTabsClient](https://developer.android.com/reference/android/support/customtabs/CustomTabsClient.html#warmup(long))
    * for specified package.
@@ -175,7 +175,7 @@ export interface IWebBrowser {
    * @return A promise which fulfils with `WebBrowserWarmUpResult` object.
    * @platform android
    */
-  warmUpAsync(browserPackage?: string): Promise<WebBrowserWarmUpResult>;
+  // warmUpAsync(browserPackage?: string): Promise<WebBrowserWarmUpResult>;
   /**
    * This method initiates (if needed) [CustomTabsSession](https://developer.android.com/reference/android/support/customtabs/CustomTabsSession.html#maylaunchurl)
    * and calls its `mayLaunchUrl` method for browser specified by the package.
@@ -187,10 +187,10 @@ export interface IWebBrowser {
    * @return A promise which fulfils with `WebBrowserMayInitWithUrlResult` object.
    * @platform android
    */
-  mayInitWithUrlAsync(
-    url: string,
-    browserPackage?: string
-  ): Promise<WebBrowserMayInitWithUrlResult>;
+  // mayInitWithUrlAsync(
+  //   url: string,
+  //   browserPackage?: string
+  // ): Promise<WebBrowserMayInitWithUrlResult>;
   /**
    * This methods removes all bindings to services created by [`warmUpAsync`](#webbrowserwarmupasyncbrowserpackage)
    * or [`mayInitWithUrlAsync`](#webbrowsermayinitwithurlasyncurl-browserpackage). You should call
@@ -203,7 +203,7 @@ export interface IWebBrowser {
    * an empty object when there was no connection to be dismissed.
    * @platform android
    */
-  coolDownAsync(browserPackage?: string): Promise<WebBrowserCoolDownResult>;
+  // coolDownAsync(browserPackage?: string): Promise<WebBrowserCoolDownResult>;
   /**
    * Opens the url with Safari in a modal on iOS using [`SFSafariViewController`](https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller),
    * and Chrome in a new [custom tab](https://developer.chrome.com/multidevice/android/customtabs)
@@ -219,17 +219,17 @@ export interface IWebBrowser {
    * - If the user closed the web browser, the Promise resolves with `{ type: 'cancel' }`.
    * - If the browser is closed using [`dismissBrowser`](#webbrowserdismissbrowser), the Promise resolves with `{ type: 'dismiss' }`.
    */
-  openBrowserAsync(
-    url: string,
-    browserParams?: WebBrowserOpenOptions
-  ): Promise<WebBrowserResult>;
+  // openBrowserAsync(
+  //   url: string,
+  //   browserParams?: WebBrowserOpenOptions
+  // ): Promise<WebBrowserResult>;
   /**
    * Dismisses the presented web browser.
    *
    * @return The `void` on successful attempt, or throws error, if dismiss functionality is not avaiable.
    * @platform ios
    */
-  dismissBrowser(): void;
+  // dismissBrowser(): void;
   /**
    * # On iOS:
    * Opens the url with Safari in a modal using `SFAuthenticationSession` on iOS 11 and greater,
@@ -280,7 +280,7 @@ export interface IWebBrowser {
     redirectUrl: string,
     browserParams?: WebBrowserOpenOptions
   ): Promise<WebBrowserAuthSessionResult>;
-  dismissAuthSession(): void;
+  // dismissAuthSession(): void;
   /**
    * Possibly completes an authentication session on web in a window popup. The method
    * should be invoked on the page that the window redirects to.
@@ -309,7 +309,7 @@ export interface IWebBrowser {
    *
    * @platform web
    */
-  maybeCompleteAuthSession(
-    options?: WebBrowserCompleteAuthSessionOptions
-  ): WebBrowserCompleteAuthSessionResult;
+  // maybeCompleteAuthSession(
+  //   options?: WebBrowserCompleteAuthSessionOptions
+  // ): WebBrowserCompleteAuthSessionResult;
 }

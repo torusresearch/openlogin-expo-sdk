@@ -9,6 +9,7 @@ import {
 } from "./types/core";
 import { LoginConfig, TypeOfLogin, WhiteLabelData } from "./types/jrpc";
 import { SdkInitParams, SdkLoginParams, SdkLogoutParams } from "./types/sdk";
+import { State } from "./types/State";
 import { ExtraLoginOptions } from "./types/utils";
 import Web3Auth from "./Web3Auth";
 
@@ -24,6 +25,7 @@ export type {
   SdkInitParams,
   SdkLoginParams,
   SdkLogoutParams,
+  State as Web3AuthState,
 };
 
 export { MFA_LEVELS, LOGIN_PROVIDER, OPENLOGIN_NETWORK };
