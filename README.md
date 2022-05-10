@@ -1,9 +1,9 @@
-# Torus OpenLogin SDK for Expo
+# React Native SDK for Web3Auth
 
 ## Installation
 
 ```sh
-npm install openlogin-expo-sdk
+npm install web3auth-react-native-sdk
 ```
 
 To allow the SDK to work with exported Expo Android apps, you need to place a designated scheme into `app.json`, like below:
